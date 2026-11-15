@@ -20,6 +20,8 @@ import {
   CheckCircle2,
   FileText,
   Calendar,
+  Flame,
+  Snowflake,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -244,8 +246,8 @@ function CustomCompareTooltip({
         <div className="space-y-1.5">
           {valA !== undefined && (
             <div className="flex items-center justify-between gap-3">
-              <span className="flex items-center gap-1.5 text-teal-300">
-                <span className="w-2 h-2 rounded-full bg-teal-400" />
+              <span className="flex items-center gap-1.5 text-cyan-300">
+                <span className="w-2 h-2 rounded-full bg-[#00f0ff] shadow-[0_0_6px_#00f0ff]" />
                 {cityAName}:
               </span>
               <span className="font-bold text-white">
@@ -255,8 +257,8 @@ function CustomCompareTooltip({
           )}
           {valB !== undefined && (
             <div className="flex items-center justify-between gap-3">
-              <span className="flex items-center gap-1.5 text-purple-300">
-                <span className="w-2 h-2 rounded-full bg-purple-400" />
+              <span className="flex items-center gap-1.5 text-pink-300">
+                <span className="w-2 h-2 rounded-full bg-[#ff4d94] shadow-[0_0_6px_#ff4d94]" />
                 {cityBName}:
               </span>
               <span className="font-bold text-white">
@@ -371,6 +373,46 @@ export default function SidePanel({
 
   // Available comparison candidates (excluding active city)
   const availableCompareCities = allCities.filter((c) => c.id !== city.id);
+
+  // Auto-computed NASA insights from yearly data array
+  const peakEntry =
+    city.data.length > 0
+      ? city.data.reduce(
+          (max, d) => (d.temp_c > max.temp_c ? d : max),
+          city.data[0]
+        )
+      : null;
+  const coolestEntry =
+    city.data.length > 0
+      ? city.data.reduce(
+          (min, d) => (d.temp_c < min.temp_c ? d : min),
+          city.data[0]
+        )
+      : null;
+
+  // CSV export for selected city's NASA MERRA-2 dataset
+  const handleCsvExport = () => {
+    const header = "year,temp_c,temp_k,trend_c,trend_k";
+    const meta = [
+      `# Source: NASA Giovanni MERRA-2 Reanalysis (2005-2025)`,
+      `# City: ${city.name} | Lat: ${city.lat.toFixed(4)} | Lng: ${city.lng.toFixed(4)}`,
+      `# 20-Yr Mean: ${city.stats.mean_c} °C (${city.stats.mean_k} K) | Slope: ${city.stats.slope} | Status: ${city.stats.status}`,
+    ].join("\n");
+    const rows = city.data
+      .map(
+        (d) =>
+          `${d.year},${d.temp_c},${d.temp_k},${d.trend_c},${d.trend_k}`
+      )
+      .join("\n");
+    const csv = `${meta}\n${header}\n${rows}`;
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${city.id}_nasa_merra2_2005_2025.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   const handleSelectCompare = (c: CityHotspot) => {
     setIsCompareDropdownOpen(false);
@@ -631,7 +673,7 @@ export default function SidePanel({
                             ? `${city.stats.mean_c}°C`
                             : `${city.stats.mean_k}K`}
                         </span>
-                        <span className="text-purple-600 dark:text-purple-400">
+                        <span className="text-pink-500 dark:text-pink-400">
                           {compareCity.name}:{" "}
                           {unit === "C"
                             ? `${compareCity.stats.mean_c}°C`
@@ -658,7 +700,7 @@ export default function SidePanel({
                         <span className="text-teal-600 dark:text-teal-400">
                           {city.name}: {city.stats.slope}
                         </span>
-                        <span className="text-purple-600 dark:text-purple-400">
+                        <span className="text-pink-500 dark:text-pink-400">
                           {compareCity.name}: {compareCity.stats.slope}
                         </span>
                       </div>
@@ -677,7 +719,7 @@ export default function SidePanel({
                             ? `${city.stats.min_c}°–${city.stats.max_c}°`
                             : `${city.stats.min_k}–${city.stats.max_k}K`}
                         </span>
-                        <span className="text-purple-600 dark:text-purple-400">
+                        <span className="text-pink-500 dark:text-pink-400">
                           {unit === "C"
                             ? `${compareCity.stats.min_c}°–${compareCity.stats.max_c}°`
                             : `${compareCity.stats.min_k}–${compareCity.stats.max_k}K`}
@@ -697,12 +739,12 @@ export default function SidePanel({
                         Superimposed LST Trajectory (2005–2025)
                       </span>
                       <div className="flex items-center gap-3 text-[11px]">
-                        <span className="flex items-center gap-1 text-teal-600 dark:text-teal-400">
-                          <span className="w-2.5 h-2.5 rounded-full bg-teal-500" />
+                        <span className="flex items-center gap-1 text-cyan-600 dark:text-cyan-400 font-semibold">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#00f0ff] shadow-[0_0_6px_#00f0ff]" />
                           {city.name}
                         </span>
-                        <span className="flex items-center gap-1 text-purple-600 dark:text-purple-400">
-                          <span className="w-2.5 h-2.5 rounded-full bg-purple-500" />
+                        <span className="flex items-center gap-1 text-pink-500 dark:text-pink-400 font-semibold">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#ff4d94] shadow-[0_0_6px_#ff4d94]" />
                           {compareCity.name}
                         </span>
                       </div>
@@ -751,17 +793,29 @@ export default function SidePanel({
                             type="linear"
                             dataKey={unit === "C" ? "temp_c_a" : "temp_k_a"}
                             name={city.name}
-                            stroke="#14b8a6"
+                            stroke="#00f0ff"
                             strokeWidth={2.5}
-                            dot={{ r: 3, fill: "#14b8a6" }}
+                            dot={{ r: 3.5, fill: "#00f0ff" }}
+                            activeDot={{
+                              r: 5,
+                              fill: "#ffffff",
+                              stroke: "#00f0ff",
+                              strokeWidth: 2,
+                            }}
                           />
                           <Line
                             type="linear"
                             dataKey={unit === "C" ? "temp_c_b" : "temp_k_b"}
                             name={compareCity.name}
-                            stroke="#a855f7"
+                            stroke="#ff4d94"
                             strokeWidth={2.5}
-                            dot={{ r: 3, fill: "#a855f7" }}
+                            dot={{ r: 3.5, fill: "#ff4d94" }}
+                            activeDot={{
+                              r: 5,
+                              fill: "#ffffff",
+                              stroke: "#ff4d94",
+                              strokeWidth: 2,
+                            }}
                           />
                         </LineChart>
                       </ResponsiveContainer>
@@ -809,7 +863,7 @@ export default function SidePanel({
                   {/* City B Card */}
                   <div className="rounded-2xl p-4 bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 flex flex-col gap-3">
                     <div className="flex items-center justify-between pb-2 border-b border-slate-200/60 dark:border-slate-800/60">
-                      <span className="font-bold font-mono text-sm text-purple-600 dark:text-purple-400">
+                      <span className="font-bold font-mono text-sm text-pink-500 dark:text-pink-400">
                         {compareCity.name}
                       </span>
                       <span className="text-[10px] font-mono text-slate-400">
@@ -833,7 +887,7 @@ export default function SidePanel({
                         </span>
                       </div>
                     </div>
-                    <span className="text-[11px] font-mono text-purple-600 dark:text-purple-300">
+                    <span className="text-[11px] font-mono text-pink-500 dark:text-pink-300">
                       {compareCity.stats.status}
                     </span>
                   </div>
@@ -904,6 +958,60 @@ export default function SidePanel({
                   </span>
                 </div>
               </div>
+
+              {/* NASA Data Insights Callout Card */}
+              {peakEntry && coolestEntry && (
+                <div
+                  suppressHydrationWarning
+                  className="rounded-2xl p-4 bg-gradient-to-br from-teal-500/10 via-cyan-500/5 to-transparent border border-teal-500/25 dark:border-teal-400/20 shadow-xs"
+                >
+                  <div className="flex items-center gap-2 pb-2.5 mb-3 border-b border-teal-500/20 dark:border-teal-400/15">
+                    <Satellite className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-teal-700 dark:text-teal-300">
+                      NASA Data Insights
+                    </span>
+                    <span className="ml-auto px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20">
+                      MERRA-2 AUTO-ANALYSIS
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="p-3 rounded-xl bg-rose-500/5 dark:bg-rose-500/10 border border-rose-500/20 flex flex-col gap-1.5">
+                      <div className="flex items-center gap-1.5 text-[9px] font-mono font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">
+                        <Flame className="w-3 h-3" />
+                        Peak Heat Year
+                      </div>
+                      <span className="text-2xl font-black font-mono text-rose-700 dark:text-rose-300 leading-none">
+                        {peakEntry.year}
+                      </span>
+                      <span className="text-xs font-mono font-bold text-rose-600 dark:text-rose-400">
+                        {unit === "C"
+                          ? `${peakEntry.temp_c.toFixed(2)} °C`
+                          : `${peakEntry.temp_k.toFixed(2)} K`}
+                      </span>
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400 leading-tight">
+                        Hottest recorded LST surface temperature in the 20-year dataset.
+                      </p>
+                    </div>
+                    <div className="p-3 rounded-xl bg-cyan-500/5 dark:bg-cyan-500/10 border border-cyan-500/20 flex flex-col gap-1.5">
+                      <div className="flex items-center gap-1.5 text-[9px] font-mono font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">
+                        <Snowflake className="w-3 h-3" />
+                        Coolest Anomaly Year
+                      </div>
+                      <span className="text-2xl font-black font-mono text-cyan-700 dark:text-cyan-300 leading-none">
+                        {coolestEntry.year}
+                      </span>
+                      <span className="text-xs font-mono font-bold text-cyan-600 dark:text-cyan-400">
+                        {unit === "C"
+                          ? `${coolestEntry.temp_c.toFixed(2)} °C`
+                          : `${coolestEntry.temp_k.toFixed(2)} K`}
+                      </span>
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400 leading-tight">
+                        Notable 2020 cooling anomaly observed across all MERRA-2 city profiles.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Interactive Dual-Line Chart (recharts) */}
               <div className="rounded-2xl p-4 sm:p-5 bg-slate-50 dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800/80 shadow-inner flex flex-col gap-2.5">
@@ -1135,30 +1243,11 @@ export default function SidePanel({
           className="p-4 sm:p-5 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md flex items-center justify-between gap-3 shrink-0"
         >
           <button
-            onClick={() => {
-              const exportData = {
-                title: "TerraMetrics NASA Challenge Telemetry Report",
-                source: "NASA Giovanni MERRA-2 Reanalysis (2005–2025)",
-                timestamp: new Date().toISOString(),
-                city: city.name,
-                coordinates: { lat: city.lat, lng: city.lng },
-                stats: city.stats,
-                yearlyData: city.data,
-              };
-              const blob = new Blob([JSON.stringify(exportData, null, 2)], {
-                type: "application/json",
-              });
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement("a");
-              a.href = url;
-              a.download = `terrametrics-${city.name.toLowerCase()}-merra2.json`;
-              a.click();
-              URL.revokeObjectURL(url);
-            }}
-            className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs transition-colors cursor-pointer"
+            onClick={handleCsvExport}
+            className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-teal-500/10 hover:bg-teal-500/20 dark:bg-teal-500/10 dark:hover:bg-teal-500/20 text-teal-700 dark:text-teal-300 border border-teal-500/30 font-semibold text-xs transition-colors cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
-            <span>Export NASA Dossier (JSON)</span>
+            <span>Export NASA CSV</span>
           </button>
 
           <button

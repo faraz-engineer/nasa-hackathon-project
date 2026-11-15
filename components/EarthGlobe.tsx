@@ -52,18 +52,20 @@ function GlobeSkeletonLoader() {
       className="relative w-full h-full min-h-[500px] flex flex-col items-center justify-center overflow-hidden bg-slate-950/80 select-none"
     >
       <div
+        suppressHydrationWarning
         aria-hidden="true"
         className="absolute w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] rounded-full border border-cyan-500/20 animate-pulse pointer-events-none"
       />
       <div
+        suppressHydrationWarning
         aria-hidden="true"
         className="absolute w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] rounded-full border border-teal-500/15 pointer-events-none"
       />
-      <div className="relative z-10 flex flex-col items-center gap-3">
-        <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-cyan-500/10 border border-cyan-500/30 backdrop-blur-md shadow-[0_0_25px_rgba(6,182,212,0.25)]">
+      <div suppressHydrationWarning className="relative z-10 flex flex-col items-center gap-3">
+        <div suppressHydrationWarning className="relative flex items-center justify-center w-14 h-14 rounded-full bg-cyan-500/10 border border-cyan-500/30 backdrop-blur-md shadow-[0_0_25px_rgba(6,182,212,0.25)]">
           <GlobeIcon className="w-7 h-7 text-cyan-400 animate-spin [animation-duration:12s]" />
         </div>
-        <div className="flex items-center gap-2 font-mono text-xs text-cyan-300 tracking-wider uppercase">
+        <div suppressHydrationWarning className="flex items-center gap-2 font-mono text-xs text-cyan-300 tracking-wider uppercase">
           <Loader2 className="w-3.5 h-3.5 animate-spin text-cyan-400" />
           <span>Synchronizing 3D Orbital Surface Telemetry...</span>
         </div>
@@ -80,7 +82,7 @@ const Globe = dynamic(() => import("./GlobeInner"), {
 
 export default function EarthGlobe({
   hotspots = MERRA2_CITIES,
-  selectedCityId = "multan",
+  selectedCityId,
   focusedCity,
   onHotspotClick,
   className = "",

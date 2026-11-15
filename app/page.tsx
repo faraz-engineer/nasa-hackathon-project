@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import EarthGlobe from "@/components/EarthGlobe";
 import SidePanel from "@/components/SidePanel";
+import Preloader from "@/components/Preloader";
 import {
   Flame,
   TreePine,
@@ -23,15 +24,11 @@ const HOTSPOTS_DATA: CityHotspot[] = Object.values(
 );
 
 export default function Home() {
-  // Multan selected by default so the dashboard is immediately active on load
-  const [selectedHotspots, setSelectedHotspots] = useState<CityHotspot[]>([
-    HOTSPOTS_DATA.find((h) => h.id === "multan") || HOTSPOTS_DATA[0],
-  ]);
-  const [isPanelOpen, setIsPanelOpen] = useState(true);
+  // Initially no city is selected and side panel is closed by default
+  const [selectedHotspots, setSelectedHotspots] = useState<CityHotspot[]>([]);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState<string>("all");
-  const [focusedCity, setFocusedCity] = useState<CityHotspot | null>(
-    HOTSPOTS_DATA.find((h) => h.id === "multan") || HOTSPOTS_DATA[0]
-  );
+  const [focusedCity, setFocusedCity] = useState<CityHotspot | null>(null);
 
   const filteredHotspots =
     activeFilter === "all"
@@ -45,14 +42,14 @@ export default function Home() {
         });
 
   /**
-   * Handle hotspot selection: single click selects, or adds to compare if already 1 selected
+   * Handle hotspot selection: single click selects & opens side panel, or adds to compare if already 1 selected
    */
   const handleHotspotClick = (hotspot: CityHotspot) => {
     setFocusedCity(hotspot);
 
     const alreadyIndex = selectedHotspots.findIndex((h) => h.id === hotspot.id);
     if (alreadyIndex !== -1) {
-      // If already selected, deselect if in comparison mode, or keep selected
+      // If already selected, deselect if in comparison mode, or ensure panel is opened
       if (selectedHotspots.length > 1) {
         const next = selectedHotspots.filter((h) => h.id !== hotspot.id);
         setSelectedHotspots(next);
@@ -84,8 +81,13 @@ export default function Home() {
   };
 
   const handleClearSelection = () => {
-    setSelectedHotspots([HOTSPOTS_DATA[0]]);
-    setFocusedCity(HOTSPOTS_DATA[0]);
+    if (selectedHotspots.length > 0) {
+      setSelectedHotspots([selectedHotspots[0]]);
+      setFocusedCity(selectedHotspots[0]);
+    } else {
+      setSelectedHotspots([]);
+      setFocusedCity(null);
+    }
   };
 
   const handleScrollToInvestigation = () => {
@@ -95,7 +97,7 @@ export default function Home() {
     }
   };
 
-  const primaryCity = selectedHotspots[0] || HOTSPOTS_DATA[0];
+  const primaryCity = selectedHotspots[0] || null;
   const compareCity = selectedHotspots[1] || null;
 
   return (
@@ -103,6 +105,9 @@ export default function Home() {
       suppressHydrationWarning
       className="flex flex-col min-h-screen w-full bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 transition-colors duration-300 overflow-x-hidden"
     >
+      {/* Professional NASA Telemetry Preloader */}
+      <Preloader />
+
       {/* ================================================
           1. Full-Screen Interactive Hero Section
           ================================================ */}
@@ -183,7 +188,7 @@ export default function Home() {
 
           <EarthGlobe
             hotspots={filteredHotspots}
-            selectedCityId={primaryCity.id}
+            selectedCityId={primaryCity ? primaryCity.id : ""}
             focusedCity={focusedCity}
             onHotspotClick={handleHotspotClick}
             autoRotate={true}
@@ -238,6 +243,7 @@ export default function Home() {
 
               return (
                 <div
+                  suppressHydrationWarning
                   key={hotspot.id}
                   role="button"
                   tabIndex={0}
@@ -289,13 +295,14 @@ export default function Home() {
               suppressHydrationWarning
               className="flex items-center justify-between px-4 py-2.5 rounded-xl bg-teal-500/5 border border-teal-500/20 text-xs font-mono"
             >
-              <span className="text-teal-700 dark:text-teal-300">
+              <span suppressHydrationWarning className="text-teal-700 dark:text-teal-300">
                 {selectedHotspots.length === 1
                   ? `📍 Investigating: ${selectedHotspots[0].name} (2005–2025 LST)`
                   : `⚡ Comparing: ${selectedHotspots[0].name} vs ${selectedHotspots[1].name}`}
               </span>
               {selectedHotspots.length > 1 && (
                 <button
+                  suppressHydrationWarning
                   onClick={handleClearSelection}
                   className="text-slate-500 hover:text-rose-400 transition-colors cursor-pointer"
                 >
@@ -306,16 +313,6 @@ export default function Home() {
           )}
         </div>
       </section>
-
-      {/* ================================================
-          Footer
-          ================================================ */}
-      <footer className="mt-auto py-10 px-6 border-t border-slate-200/60 dark:border-slate-800/60 text-center text-xs text-slate-500 dark:text-slate-400 font-mono">
-        <p>TerraMetrics: Earth System Trend Detective</p>
-        <p className="mt-1 text-[11px] text-slate-400">
-          Powered by NASA Earth Science Telemetry (MERRA-2, MODIS, Landsat, GRACE-FO, Sentinel).
-        </p>
-      </footer>
     </div>
   );
 }
