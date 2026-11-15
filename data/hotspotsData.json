@@ -1,0 +1,666 @@
+{
+    "multan": {
+        "id": "multan",
+        "name": "Multan",
+        "lat": 30.1575,
+        "lng": 71.5249,
+        "stats": {
+            "mean_c": 27.13,
+            "mean_k": 300.28,
+            "min_c": 24.91,
+            "max_c": 28.2,
+            "min_k": 298.06,
+            "max_k": 301.35,
+            "slope": "-0.0325 K/yr",
+            "slope_val": -0.0325,
+            "status": "Moderate Cooling Trend"
+        },
+        "data": [
+            {
+                "year": 2005,
+                "temp_c": 26.85,
+                "temp_k": 300.0,
+                "trend_c": 27.45,
+                "trend_k": 300.6
+            },
+            {
+                "year": 2006,
+                "temp_c": 27.99,
+                "temp_k": 301.14,
+                "trend_c": 27.42,
+                "trend_k": 300.57
+            },
+            {
+                "year": 2007,
+                "temp_c": 27.3,
+                "temp_k": 300.45,
+                "trend_c": 27.39,
+                "trend_k": 300.54
+            },
+            {
+                "year": 2008,
+                "temp_c": 27.33,
+                "temp_k": 300.48,
+                "trend_c": 27.35,
+                "trend_k": 300.5
+            },
+            {
+                "year": 2009,
+                "temp_c": 27.57,
+                "temp_k": 300.72,
+                "trend_c": 27.32,
+                "trend_k": 300.47
+            },
+            {
+                "year": 2010,
+                "temp_c": 27.6,
+                "temp_k": 300.75,
+                "trend_c": 27.29,
+                "trend_k": 300.44
+            },
+            {
+                "year": 2011,
+                "temp_c": 27.47,
+                "temp_k": 300.62,
+                "trend_c": 27.26,
+                "trend_k": 300.41
+            },
+            {
+                "year": 2012,
+                "temp_c": 26.45,
+                "temp_k": 299.6,
+                "trend_c": 27.22,
+                "trend_k": 300.37
+            },
+            {
+                "year": 2013,
+                "temp_c": 27.12,
+                "temp_k": 300.27,
+                "trend_c": 27.19,
+                "trend_k": 300.34
+            },
+            {
+                "year": 2014,
+                "temp_c": 27.03,
+                "temp_k": 300.18,
+                "trend_c": 27.16,
+                "trend_k": 300.31
+            },
+            {
+                "year": 2015,
+                "temp_c": 26.72,
+                "temp_k": 299.87,
+                "trend_c": 27.13,
+                "trend_k": 300.28
+            },
+            {
+                "year": 2016,
+                "temp_c": 28.2,
+                "temp_k": 301.35,
+                "trend_c": 27.09,
+                "trend_k": 300.24
+            },
+            {
+                "year": 2017,
+                "temp_c": 27.53,
+                "temp_k": 300.68,
+                "trend_c": 27.06,
+                "trend_k": 300.21
+            },
+            {
+                "year": 2018,
+                "temp_c": 27.8,
+                "temp_k": 300.95,
+                "trend_c": 27.03,
+                "trend_k": 300.18
+            },
+            {
+                "year": 2019,
+                "temp_c": 26.8,
+                "temp_k": 299.95,
+                "trend_c": 27.0,
+                "trend_k": 300.15
+            },
+            {
+                "year": 2020,
+                "temp_c": 24.91,
+                "temp_k": 298.06,
+                "trend_c": 26.96,
+                "trend_k": 300.11
+            },
+            {
+                "year": 2021,
+                "temp_c": 27.37,
+                "temp_k": 300.52,
+                "trend_c": 26.93,
+                "trend_k": 300.08
+            },
+            {
+                "year": 2022,
+                "temp_c": 26.47,
+                "temp_k": 299.62,
+                "trend_c": 26.9,
+                "trend_k": 300.05
+            },
+            {
+                "year": 2023,
+                "temp_c": 26.65,
+                "temp_k": 299.8,
+                "trend_c": 26.87,
+                "trend_k": 300.02
+            },
+            {
+                "year": 2024,
+                "temp_c": 26.9,
+                "temp_k": 300.05,
+                "trend_c": 26.83,
+                "trend_k": 299.98
+            },
+            {
+                "year": 2025,
+                "temp_c": 27.59,
+                "temp_k": 300.74,
+                "trend_c": 26.8,
+                "trend_k": 299.95
+            }
+        ]
+    },
+    "lahore": {
+        "id": "lahore",
+        "name": "Lahore",
+        "lat": 31.5204,
+        "lng": 74.3587,
+        "stats": {
+            "mean_c": 25.4,
+            "mean_k": 298.55,
+            "min_c": 23.84,
+            "max_c": 26.65,
+            "min_k": 296.99,
+            "max_k": 299.8,
+            "slope": "-0.0683 K/yr",
+            "slope_val": -0.0683,
+            "status": "Moderate Cooling Trend"
+        },
+        "data": [
+            {
+                "year": 2005,
+                "temp_c": 25.31,
+                "temp_k": 298.46,
+                "trend_c": 26.08,
+                "trend_k": 299.23
+            },
+            {
+                "year": 2006,
+                "temp_c": 25.94,
+                "temp_k": 299.09,
+                "trend_c": 26.01,
+                "trend_k": 299.16
+            },
+            {
+                "year": 2007,
+                "temp_c": 25.97,
+                "temp_k": 299.12,
+                "trend_c": 25.94,
+                "trend_k": 299.09
+            },
+            {
+                "year": 2008,
+                "temp_c": 25.26,
+                "temp_k": 298.41,
+                "trend_c": 25.87,
+                "trend_k": 299.02
+            },
+            {
+                "year": 2009,
+                "temp_c": 26.65,
+                "temp_k": 299.8,
+                "trend_c": 25.81,
+                "trend_k": 298.96
+            },
+            {
+                "year": 2010,
+                "temp_c": 26.21,
+                "temp_k": 299.36,
+                "trend_c": 25.74,
+                "trend_k": 298.89
+            },
+            {
+                "year": 2011,
+                "temp_c": 25.46,
+                "temp_k": 298.61,
+                "trend_c": 25.67,
+                "trend_k": 298.82
+            },
+            {
+                "year": 2012,
+                "temp_c": 25.63,
+                "temp_k": 298.78,
+                "trend_c": 25.6,
+                "trend_k": 298.75
+            },
+            {
+                "year": 2013,
+                "temp_c": 25.44,
+                "temp_k": 298.59,
+                "trend_c": 25.53,
+                "trend_k": 298.68
+            },
+            {
+                "year": 2014,
+                "temp_c": 25.11,
+                "temp_k": 298.26,
+                "trend_c": 25.46,
+                "trend_k": 298.61
+            },
+            {
+                "year": 2015,
+                "temp_c": 25.53,
+                "temp_k": 298.68,
+                "trend_c": 25.4,
+                "trend_k": 298.55
+            },
+            {
+                "year": 2016,
+                "temp_c": 26.49,
+                "temp_k": 299.64,
+                "trend_c": 25.33,
+                "trend_k": 298.48
+            },
+            {
+                "year": 2017,
+                "temp_c": 25.96,
+                "temp_k": 299.11,
+                "trend_c": 25.26,
+                "trend_k": 298.41
+            },
+            {
+                "year": 2018,
+                "temp_c": 25.69,
+                "temp_k": 298.84,
+                "trend_c": 25.19,
+                "trend_k": 298.34
+            },
+            {
+                "year": 2019,
+                "temp_c": 25.05,
+                "temp_k": 298.2,
+                "trend_c": 25.12,
+                "trend_k": 298.27
+            },
+            {
+                "year": 2020,
+                "temp_c": 23.84,
+                "temp_k": 296.99,
+                "trend_c": 25.05,
+                "trend_k": 298.2
+            },
+            {
+                "year": 2021,
+                "temp_c": 24.95,
+                "temp_k": 298.1,
+                "trend_c": 24.99,
+                "trend_k": 298.14
+            },
+            {
+                "year": 2022,
+                "temp_c": 25.24,
+                "temp_k": 298.39,
+                "trend_c": 24.92,
+                "trend_k": 298.07
+            },
+            {
+                "year": 2023,
+                "temp_c": 23.87,
+                "temp_k": 297.02,
+                "trend_c": 24.85,
+                "trend_k": 298.0
+            },
+            {
+                "year": 2024,
+                "temp_c": 25.15,
+                "temp_k": 298.3,
+                "trend_c": 24.78,
+                "trend_k": 297.93
+            },
+            {
+                "year": 2025,
+                "temp_c": 24.56,
+                "temp_k": 297.71,
+                "trend_c": 24.71,
+                "trend_k": 297.86
+            }
+        ]
+    },
+    "islamabad": {
+        "id": "islamabad",
+        "name": "Islamabad",
+        "lat": 33.6844,
+        "lng": 73.0479,
+        "stats": {
+            "mean_c": 21.62,
+            "mean_k": 294.77,
+            "min_c": 19.32,
+            "max_c": 22.76,
+            "min_k": 292.47,
+            "max_k": 295.91,
+            "slope": "-0.0579 K/yr",
+            "slope_val": -0.0579,
+            "status": "Moderate Cooling Trend"
+        },
+        "data": [
+            {
+                "year": 2005,
+                "temp_c": 21.7,
+                "temp_k": 294.85,
+                "trend_c": 22.2,
+                "trend_k": 295.35
+            },
+            {
+                "year": 2006,
+                "temp_c": 22.25,
+                "temp_k": 295.4,
+                "trend_c": 22.14,
+                "trend_k": 295.29
+            },
+            {
+                "year": 2007,
+                "temp_c": 21.36,
+                "temp_k": 294.51,
+                "trend_c": 22.08,
+                "trend_k": 295.23
+            },
+            {
+                "year": 2008,
+                "temp_c": 21.81,
+                "temp_k": 294.96,
+                "trend_c": 22.02,
+                "trend_k": 295.17
+            },
+            {
+                "year": 2009,
+                "temp_c": 22.75,
+                "temp_k": 295.9,
+                "trend_c": 21.97,
+                "trend_k": 295.12
+            },
+            {
+                "year": 2010,
+                "temp_c": 22.47,
+                "temp_k": 295.62,
+                "trend_c": 21.91,
+                "trend_k": 295.06
+            },
+            {
+                "year": 2011,
+                "temp_c": 22.08,
+                "temp_k": 295.23,
+                "trend_c": 21.85,
+                "trend_k": 295.0
+            },
+            {
+                "year": 2012,
+                "temp_c": 21.48,
+                "temp_k": 294.63,
+                "trend_c": 21.79,
+                "trend_k": 294.94
+            },
+            {
+                "year": 2013,
+                "temp_c": 21.43,
+                "temp_k": 294.58,
+                "trend_c": 21.73,
+                "trend_k": 294.88
+            },
+            {
+                "year": 2014,
+                "temp_c": 21.58,
+                "temp_k": 294.73,
+                "trend_c": 21.68,
+                "trend_k": 294.83
+            },
+            {
+                "year": 2015,
+                "temp_c": 21.54,
+                "temp_k": 294.69,
+                "trend_c": 21.62,
+                "trend_k": 294.77
+            },
+            {
+                "year": 2016,
+                "temp_c": 22.76,
+                "temp_k": 295.91,
+                "trend_c": 21.56,
+                "trend_k": 294.71
+            },
+            {
+                "year": 2017,
+                "temp_c": 22.39,
+                "temp_k": 295.54,
+                "trend_c": 21.5,
+                "trend_k": 294.65
+            },
+            {
+                "year": 2018,
+                "temp_c": 22.18,
+                "temp_k": 295.33,
+                "trend_c": 21.44,
+                "trend_k": 294.59
+            },
+            {
+                "year": 2019,
+                "temp_c": 21.39,
+                "temp_k": 294.54,
+                "trend_c": 21.39,
+                "trend_k": 294.54
+            },
+            {
+                "year": 2020,
+                "temp_c": 19.32,
+                "temp_k": 292.47,
+                "trend_c": 21.33,
+                "trend_k": 294.48
+            },
+            {
+                "year": 2021,
+                "temp_c": 20.73,
+                "temp_k": 293.88,
+                "trend_c": 21.27,
+                "trend_k": 294.42
+            },
+            {
+                "year": 2022,
+                "temp_c": 21.13,
+                "temp_k": 294.28,
+                "trend_c": 21.21,
+                "trend_k": 294.36
+            },
+            {
+                "year": 2023,
+                "temp_c": 20.59,
+                "temp_k": 293.74,
+                "trend_c": 21.15,
+                "trend_k": 294.3
+            },
+            {
+                "year": 2024,
+                "temp_c": 21.33,
+                "temp_k": 294.48,
+                "trend_c": 21.1,
+                "trend_k": 294.25
+            },
+            {
+                "year": 2025,
+                "temp_c": 21.7,
+                "temp_k": 294.85,
+                "trend_c": 21.04,
+                "trend_k": 294.19
+            }
+        ]
+    },
+    "karachi": {
+        "id": "karachi",
+        "name": "Karachi",
+        "lat": 24.8607,
+        "lng": 67.0011,
+        "stats": {
+            "mean_c": 27.7,
+            "mean_k": 300.85,
+            "min_c": 26.46,
+            "max_c": 28.53,
+            "min_k": 299.61,
+            "max_k": 301.68,
+            "slope": "-0.0096 K/yr",
+            "slope_val": -0.0096,
+            "status": "Stable / Minor Cooling"
+        },
+        "data": [
+            {
+                "year": 2005,
+                "temp_c": 27.87,
+                "temp_k": 301.02,
+                "trend_c": 27.79,
+                "trend_k": 300.94
+            },
+            {
+                "year": 2006,
+                "temp_c": 27.38,
+                "temp_k": 300.53,
+                "trend_c": 27.78,
+                "trend_k": 300.93
+            },
+            {
+                "year": 2007,
+                "temp_c": 27.49,
+                "temp_k": 300.64,
+                "trend_c": 27.77,
+                "trend_k": 300.92
+            },
+            {
+                "year": 2008,
+                "temp_c": 27.38,
+                "temp_k": 300.53,
+                "trend_c": 27.76,
+                "trend_k": 300.91
+            },
+            {
+                "year": 2009,
+                "temp_c": 28.19,
+                "temp_k": 301.34,
+                "trend_c": 27.75,
+                "trend_k": 300.9
+            },
+            {
+                "year": 2010,
+                "temp_c": 27.78,
+                "temp_k": 300.93,
+                "trend_c": 27.74,
+                "trend_k": 300.89
+            },
+            {
+                "year": 2011,
+                "temp_c": 27.61,
+                "temp_k": 300.76,
+                "trend_c": 27.73,
+                "trend_k": 300.88
+            },
+            {
+                "year": 2012,
+                "temp_c": 27.37,
+                "temp_k": 300.52,
+                "trend_c": 27.72,
+                "trend_k": 300.87
+            },
+            {
+                "year": 2013,
+                "temp_c": 28.05,
+                "temp_k": 301.2,
+                "trend_c": 27.71,
+                "trend_k": 300.86
+            },
+            {
+                "year": 2014,
+                "temp_c": 28.07,
+                "temp_k": 301.22,
+                "trend_c": 27.7,
+                "trend_k": 300.85
+            },
+            {
+                "year": 2015,
+                "temp_c": 28.41,
+                "temp_k": 301.56,
+                "trend_c": 27.7,
+                "trend_k": 300.85
+            },
+            {
+                "year": 2016,
+                "temp_c": 28.4,
+                "temp_k": 301.55,
+                "trend_c": 27.69,
+                "trend_k": 300.84
+            },
+            {
+                "year": 2017,
+                "temp_c": 27.68,
+                "temp_k": 300.83,
+                "trend_c": 27.68,
+                "trend_k": 300.83
+            },
+            {
+                "year": 2018,
+                "temp_c": 28.53,
+                "temp_k": 301.68,
+                "trend_c": 27.67,
+                "trend_k": 300.82
+            },
+            {
+                "year": 2019,
+                "temp_c": 26.97,
+                "temp_k": 300.12,
+                "trend_c": 27.66,
+                "trend_k": 300.81
+            },
+            {
+                "year": 2020,
+                "temp_c": 26.46,
+                "temp_k": 299.61,
+                "trend_c": 27.65,
+                "trend_k": 300.8
+            },
+            {
+                "year": 2021,
+                "temp_c": 27.8,
+                "temp_k": 300.95,
+                "trend_c": 27.64,
+                "trend_k": 300.79
+            },
+            {
+                "year": 2022,
+                "temp_c": 26.69,
+                "temp_k": 299.84,
+                "trend_c": 27.63,
+                "trend_k": 300.78
+            },
+            {
+                "year": 2023,
+                "temp_c": 27.99,
+                "temp_k": 301.14,
+                "trend_c": 27.62,
+                "trend_k": 300.77
+            },
+            {
+                "year": 2024,
+                "temp_c": 27.87,
+                "temp_k": 301.02,
+                "trend_c": 27.61,
+                "trend_k": 300.76
+            },
+            {
+                "year": 2025,
+                "temp_c": 27.61,
+                "temp_k": 300.76,
+                "trend_c": 27.6,
+                "trend_k": 300.75
+            }
+        ]
+    }
+}
